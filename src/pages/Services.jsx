@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import { useScrollBlur } from '../hooks/useScrollBlur';
+import FadeInSection from '../components/FadeInSection';
 
 const SERVICES = [
   {
@@ -53,18 +55,21 @@ const ArrowIcon = () => (
 );
 
 export default function Services() {
+  const heroBlur = useScrollBlur(300);
+
   return (
     <div className="page">
 
       {/* ── PAGE HERO ── */}
       <section style={{
-        minHeight: '70vh', display: 'flex', alignItems: 'center',
-        padding: '120px 32px 60px', position: 'relative', overflow: 'hidden',
+        minHeight: '50vh', display: 'flex', alignItems: 'center',
+        paddingTop: '162px', paddingBottom: '40px', position: 'relative', overflow: 'hidden',
         background: `
-          radial-gradient(ellipse 65% 70% at 90% 25%, rgba(0,212,255,0.10) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 55% at 5% 90%, rgba(26,60,255,0.08) 0%, transparent 60%),
-          var(--gray-50)
+          linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
+          url('https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=1600&auto=format&fit=crop') center/cover no-repeat
         `,
+        filter: `blur(${heroBlur}px)`,
+        transition: 'filter 0.1s ease-out',
       }}>
         <div className="dot-bg" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: 700, margin: '0 auto' }}>
@@ -81,7 +86,7 @@ export default function Services() {
       </section>
 
       {/* ── SERVICES GRID ── */}
-      <section className="section section-alt">
+      <FadeInSection className="section section-alt">
         <div className="container">
           <div className="grid-3">
             {SERVICES.map(({ icon, title, desc, features }) => (
@@ -105,10 +110,10 @@ export default function Services() {
             ))}
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* ── PROCESS ── */}
-      <section className="section">
+      <FadeInSection className="section">
         <div className="container">
           <div className="section-head">
             <h2>How We Work</h2>
@@ -142,4 +147,36 @@ export default function Services() {
                 }}
               >
                 <div style={{
-      
+                  width: 64, height: 64, borderRadius: '50%',
+                  background: `linear-gradient(135deg, var(--blue), var(--blue-dark))`,
+                  color: 'white',
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 20px',
+                  fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: 18,
+                  boxShadow: '0 4px 12px rgba(26,60,255,0.3)',
+                }}>{step}</div>
+                <h3 style={{ fontSize: 17, marginBottom: 10, fontWeight: 700 }}>{title}</h3>
+                <p style={{ fontSize: 13, color: 'var(--gray-500)', lineHeight: 1.7 }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`@media(max-width:768px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
+      </FadeInSection>
+
+      {/* ── CTA ── */}
+      <FadeInSection className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="cta-banner">
+            <div className="cta-banner-text">
+              <h2>Need a Custom Solution?</h2>
+              <p>Tell us about your project and we'll get back to you within 24 hours.</p>
+            </div>
+            <Link to="/contact" className="btn btn-white">Start a Project →</Link>
+          </div>
+        </div>
+      </FadeInSection>
+
+    </div>
+  );
+}

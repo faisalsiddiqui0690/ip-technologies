@@ -1,5 +1,13 @@
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useScrollBlur } from '../hooks/useScrollBlur';
+import FadeInSection from '../components/FadeInSection';
+
+const ArrowIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' }}>
+    <path d="M3 7h8M8 4l3 3-3 3" />
+  </svg>
+);
 
 const CATEGORIES = ['All', 'Frontend', 'Backend', 'Mobile', 'Database', 'Cloud'];
 
@@ -28,6 +36,7 @@ const TECHS = [
 
 export default function Technologies() {
   const [active, setActive] = useState('All');
+  const heroBlur = useScrollBlur(300);
 
   const filtered = active === 'All' ? TECHS : TECHS.filter(t => t.cat === active);
 
@@ -36,13 +45,14 @@ export default function Technologies() {
 
       {/* ── PAGE HERO ── */}
       <section style={{
-        minHeight: '70vh', display: 'flex', alignItems: 'center',
-        padding: '120px 32px 60px', position: 'relative', overflow: 'hidden',
+        minHeight: '50vh', display: 'flex', alignItems: 'center',
+        paddingTop: '162px', paddingBottom: '40px', position: 'relative', overflow: 'hidden',
         background: `
-          radial-gradient(ellipse 65% 70% at 90% 25%, rgba(0,212,255,0.10) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 55% at 5% 90%, rgba(26,60,255,0.08) 0%, transparent 60%),
-          var(--gray-50)
+          linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
+          url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&auto=format&fit=crop') center/cover no-repeat
         `,
+        filter: `blur(${heroBlur}px)`,
+        transition: 'filter 0.1s ease-out',
       }}>
         <div className="dot-bg" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
         <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: 700, margin: '0 auto' }}>
@@ -59,7 +69,7 @@ export default function Technologies() {
       </section>
 
       {/* ── FILTER TABS ── */}
-      <section className="section section-alt">
+      <FadeInSection className="section section-alt">
         <div className="container">
           {/* Category tabs */}
           <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 44 }}>
@@ -112,10 +122,10 @@ export default function Technologies() {
           </div>
         </div>
         <style>{`@media(max-width:900px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(3,1fr)!important;} } @media(max-width:600px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
-      </section>
+      </FadeInSection>
 
       {/* ── WHY OUR STACK ── */}
-      <section className="section">
+      <FadeInSection className="section">
         <div className="container">
           <div className="section-head">
             <h2>Why We Choose These Tools</h2>
@@ -123,4 +133,33 @@ export default function Technologies() {
           </div>
           <div className="grid-3">
             {[
-              { title: 'Battle-tested', desc: 'Every technology in our stack is proven in producti
+              { title: 'Battle-tested', desc: 'Every technology in our stack is proven in production at scale — no experimental tools in your critical path.' },
+              { title: 'Developer-friendly', desc: 'We pick tools with great DX so our team moves fast, makes fewer mistakes, and ships higher quality code.' },
+              { title: 'Future-proof', desc: 'We evaluate tools for ecosystem health, community momentum, and long-term vendor stability.' },
+            ].map(({ title, desc }) => (
+              <div key={title} className="card">
+                <div style={{ width: 10, height: 10, borderRadius: '50%', background: 'var(--blue)', marginBottom: 16 }} />
+                <h3 style={{ fontSize: 16, marginBottom: 8 }}>{title}</h3>
+                <p style={{ fontSize: 13, color: 'var(--gray-500)', lineHeight: 1.65 }}>{desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </FadeInSection>
+
+      {/* ── CTA ── */}
+      <FadeInSection className="section" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div className="cta-banner">
+            <div className="cta-banner-text">
+              <h2>Not Sure Which Stack Is Right for You?</h2>
+              <p>Our architects will recommend the best solution for your specific needs.</p>
+            </div>
+            <Link to="/contact" className="btn btn-white">Talk to an Expert →</Link>
+          </div>
+        </div>
+      </FadeInSection>
+
+    </div>
+  );
+}

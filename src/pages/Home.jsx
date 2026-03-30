@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
+import iplogo from "../assets/ipshopylogo.png" ;
+import { useScrollBlur } from '../hooks/useScrollBlur';
+import { useScrollFadeIn } from '../hooks/useScrollFadeIn';
+import FadeInSection from '../components/FadeInSection';
 
 const SLIDES = [
   {
@@ -58,6 +62,7 @@ const ArrowIcon = () => (
 
 export default function Home() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const heroBlur = useScrollBlur(300);
 
   // Auto-advance slides every 5 seconds
   useEffect(() => {
@@ -81,7 +86,9 @@ export default function Home() {
       {/* ── HERO SLIDER ── */}
       <section style={{
         minHeight: '90vh', position: 'relative', overflow: 'hidden',
-        paddingTop: 0,
+        paddingTop: 62, // Offset for fixed header
+        filter: `blur(${heroBlur}px)`,
+        transition: 'filter 0.1s ease-out',
       }}>
         {/* Background image for each slide */}
         <div style={{ position: 'absolute', inset: 0, overflow: 'hidden' }}>
@@ -291,10 +298,17 @@ export default function Home() {
       </section>
 
       {/* ── ABOUT PREVIEW ── */}
-      <section className="section">
+      <FadeInSection className="section">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 56, alignItems: 'center' }}>
-            <div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, alignItems: 'center' }}>
+            <div style={{ paddingRight: '10px' }}>
+              <img
+                src={iplogo}
+                alt="Team"
+                style={{ borderRadius: 2, width: '80%', objectFit: 'cover', aspectRatio: '4/3', boxShadow: 'var(--shadow-lg)' }}
+              />
+            </div>
+            <div style={{ paddingLeft: '40px' }}>
               <div className="badge"><span className="badge-dot" /> About Us</div>
               <h2 style={{ fontSize: 'clamp(24px,3.5vw,34px)', marginBottom: 16 }}>About IP Technologies</h2>
               <p style={{ color: 'var(--gray-500)', lineHeight: 1.75, marginBottom: 28 }}>
@@ -314,19 +328,12 @@ export default function Home() {
                 Learn More <ArrowIcon />
               </Link>
             </div>
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=800&auto=format&fit=crop"
-                alt="Team"
-                style={{ borderRadius: 20, width: '100%', objectFit: 'cover', aspectRatio: '4/3', boxShadow: 'var(--shadow-lg)' }}
-              />
-            </div>
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* ── SERVICES PREVIEW ── */}
-      <section className="section section-alt">
+      <FadeInSection className="section section-alt">
         <div className="container">
           <div className="section-head">
             <h2>Our Services</h2>
@@ -345,24 +352,26 @@ export default function Home() {
             <Link to="/services" className="btn btn-primary">View All Services <ArrowIcon /></Link>
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       {/* ── TRUSTED BY ── */}
-      <section style={{ padding: '36px 32px', borderTop: '1px solid var(--gray-100)', borderBottom: '1px solid var(--gray-100)' }}>
-        <p style={{ textAlign: 'center', fontSize: 11, fontWeight: 600, color: 'var(--gray-400)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 28 }}>
-          Trusted by industry leaders
-        </p>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gap: 24, alignItems: 'center', opacity: 0.45, filter: 'grayscale(1)' }}>
-          {[1,2,3,4,5,6].map(i => (
-            <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
-              <img src={`https://via.placeholder.com/110x40?text=Logo+${i}`} alt={`Logo ${i}`} style={{ height: 32, objectFit: 'contain' }} />
-            </div>
-          ))}
-        </div>
-      </section>
+      <FadeInSection>
+        <section style={{ padding: '36px 32px', borderTop: '1px solid var(--gray-100)', borderBottom: '1px solid var(--gray-100)' }}>
+          <p style={{ textAlign: 'center', fontSize: 11, fontWeight: 600, color: 'var(--gray-400)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 28 }}>
+            Trusted by industry leaders
+          </p>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(6,1fr)', gap: 24, alignItems: 'center', opacity: 0.45, filter: 'grayscale(1)' }}>
+            {[1,2,3,4,5,6].map(i => (
+              <div key={i} style={{ display: 'flex', justifyContent: 'center' }}>
+                <img src={`https://via.placeholder.com/110x40?text=Logo+${i}`} alt={`Logo ${i}`} style={{ height: 32, objectFit: 'contain' }} />
+              </div>
+            ))}
+          </div>
+        </section>
+      </FadeInSection>
 
       {/* ── CTA BANNER ── */}
-      <section className="section" style={{ paddingTop: 0 }}>
+      <FadeInSection className="section" style={{ paddingTop: 0 }}>
         <div className="container">
           <div className="cta-banner">
             <div className="cta-banner-text">
@@ -372,7 +381,7 @@ export default function Home() {
             <Link to="/contact" className="btn btn-white">Get in Touch →</Link>
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       <style>{`
         @media (max-width: 768px) {

@@ -1,11 +1,19 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import FadeInSection from '../components/FadeInSection';
+
+const ArrowIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ stroke: 'currentColor', strokeWidth: 1.8, strokeLinecap: 'round', strokeLinejoin: 'round' }}>
+    <path d="M3 7h8M8 4l3 3-3 3" />
+  </svg>
+);
 
 const CONTACT_INFO = [
   {
     icon: <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.18 2 2 0 0 1 3.58 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.56a16 16 0 0 0 6.13 6.13l.94-1.94a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>,
     label: 'Phone',
-    value: '+91 98765 43210',
-    link: 'tel:+919876543210',
+    value: '093425 25252',
+    link: 'tel:+919342525252',
   },
   {
     icon: <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>,
@@ -16,13 +24,13 @@ const CONTACT_INFO = [
   {
     icon: <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>,
     label: 'Office',
-    value: 'Bandra Kurla Complex, Mumbai, Maharashtra 400051',
+    value: 'Gyanpeeth - Campus II, T18, STPI, Naregaon - Malharpur - Warud Rd, opp. Garware Stadium, MIDC Industrial Area, Chilkalthana, Chhatrapati Sambhajinagar, Maharashtra 431008',
     link: '#',
   },
   {
     icon: <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>,
     label: 'Working Hours',
-    value: 'Mon – Sat, 9:00 AM – 7:00 PM IST',
+    value: 'Open 24 hours',
     link: '#',
   },
 ];
@@ -43,19 +51,30 @@ export default function Contact() {
     <div className="page">
 
       {/* ── PAGE HERO ── */}
-      <section className="page-hero" style={{ position: 'relative', overflow: 'hidden' }}>
+      <section style={{
+        minHeight: '50vh', display: 'flex', alignItems: 'center',
+        paddingTop: '162px', paddingBottom: '40px', position: 'relative', overflow: 'hidden',
+        background: `
+          linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
+          url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&auto=format&fit=crop') center/cover no-repeat
+        `,
+      }}>
         <div className="dot-bg" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
+        <div className="container" style={{ position: 'relative', zIndex: 1, textAlign: 'center', maxWidth: 700, margin: '0 auto' }}>
           <div className="badge" style={{ margin: '0 auto 18px' }}><span className="badge-dot" /> Get in Touch</div>
-          <h1>Contact Us</h1>
-          <p style={{ color: 'var(--gray-500)', fontSize: 16, maxWidth: 440, margin: '14px auto 0' }}>
+          <h1 style={{ fontSize: 'clamp(34px, 5vw, 52px)', marginBottom: 16 }}>Contact Us</h1>
+          <p style={{ color: 'var(--gray-500)', fontSize: 17, maxWidth: 560, margin: '0 auto 32px', lineHeight: 1.7 }}>
             Have a project in mind or just want to say hello? We'd love to hear from you.
           </p>
+          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
+            <Link to="/services" className="btn btn-primary">View Services <ArrowIcon /></Link>
+            <Link to="/about" className="btn btn-outline">About Us</Link>
+          </div>
         </div>
       </section>
 
       {/* ── MAIN CONTENT ── */}
-      <section className="section">
+      <FadeInSection className="section">
         <div className="container">
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.6fr', gap: 48, alignItems: 'start' }}>
 
@@ -89,18 +108,42 @@ export default function Contact() {
                 ))}
               </div>
 
-              {/* Map placeholder */}
+              {/* Google Maps Embed */}
               <div style={{
-                marginTop: 36, borderRadius: 14, overflow: 'hidden',
-                border: '1px solid var(--gray-200)', height: 180,
-                background: 'var(--gray-50)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
+                marginTop: 36, 
+                borderRadius: 16, 
+                overflow: 'hidden',
+                border: '1px solid var(--gray-200)',
+                boxShadow: 'var(--shadow-sm)',
               }}>
-                <div style={{ textAlign: 'center' }}>
-                  <svg width="32" height="32" viewBox="0 0 24 24" style={{ stroke: 'var(--gray-400)', strokeWidth: 1.5, fill: 'none', margin: '0 auto 8px', display: 'block' }}>
-                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
-                  </svg>
-                  <p style={{ fontSize: 12, color: 'var(--gray-400)' }}>BKC, Mumbai</p>
+                <div className="mapouter" style={{
+                  position: 'relative',
+                  textAlign: 'right',
+                  width: '100%',
+                  height: '300px',
+                }}>
+                  <div className="gmap_canvas" style={{
+                    overflow: 'hidden',
+                    background: 'none!important',
+                    width: '100%',
+                    height: '300px',
+                  }}>
+                    <iframe
+                      className="gmap_iframe"
+                      frameBorder="0"
+                      scrolling="no"
+                      marginHeight="0"
+                      marginWidth="0"
+                      src="https://maps.google.com/maps?width=600&height=400&hl=en&q=ipshopy&t=&z=14&ie=UTF8&iwloc=B&output=embed"
+                      style={{
+                        width: '100%',
+                        height: '300px',
+                        border: 'none',
+                        display: 'block',
+                      }}
+                      title="IP Technologies Location"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
@@ -196,7 +239,7 @@ export default function Contact() {
             </div>
           </div>
         </div>
-      </section>
+      </FadeInSection>
 
       <style>{`
         @media(max-width:768px) {

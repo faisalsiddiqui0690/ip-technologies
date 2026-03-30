@@ -1,4 +1,7 @@
 import { Link } from 'react-router-dom';
+import iplogo from "../assets/ipshopylogo.png" ;
+import { useScrollBlur } from '../hooks/useScrollBlur';
+import FadeInSection from '../components/FadeInSection';
 
 const TEAM = [
   { name: 'Rahul Mehta', role: 'CEO & Co-Founder', initials: 'RM', color: '#1a3cff' },
@@ -49,12 +52,11 @@ export default function About() {
 
       {/* ── PAGE HERO ── */}
       <section style={{
-        minHeight: '70vh', display: 'flex', alignItems: 'center',
-        padding: '120px 32px 60px', position: 'relative', overflow: 'hidden',
+        minHeight: '50vh', display: 'flex', alignItems: 'center',
+        paddingTop: '162px', paddingBottom: '40px', position: 'relative', overflow: 'hidden',
         background: `
-          radial-gradient(ellipse 65% 70% at 90% 25%, rgba(0,212,255,0.10) 0%, transparent 60%),
-          radial-gradient(ellipse 50% 55% at 5% 90%, rgba(26,60,255,0.08) 0%, transparent 60%),
-          var(--gray-50)
+          linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
+          url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop') center/cover no-repeat
         `,
       }}>
         <div className="dot-bg" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
@@ -71,70 +73,46 @@ export default function About() {
         </div>
       </section>
 
-      {/* ── STATS ── */}
-      <section style={{ 
-        background: `linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%)`, 
-        padding: '60px 32px',
-        position: 'relative',
-        overflow: 'hidden',
-      }}>
-        <div style={{
-          position: 'absolute', inset: 0, opacity: 0.1,
-          backgroundImage: `radial-gradient(circle at 2px 2px, white 1px, transparent 0)`,
-          backgroundSize: '40px 40px',
-        }} />
-        <div className="container" style={{ position: 'relative', zIndex: 1 }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 32, textAlign: 'center' }}>
-            {STATS.map((s, idx) => (
-              <div key={s.label} style={{
-                background: 'rgba(255,255,255,0.1)',
-                backdropFilter: 'blur(10px)',
-                borderRadius: '16px',
-                padding: '28px 20px',
-                border: '1px solid rgba(255,255,255,0.2)',
-              }}>
-                <div style={{ fontFamily: 'var(--font-body)', fontSize: 42, fontWeight: 800, color: 'white', lineHeight: 1 }}>{s.num}</div>
-                <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.85)', marginTop: 8, fontWeight: 500 }}>{s.label}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-        <style>{`@media(max-width:600px){ section div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
-      </section>
+    
 
       {/* ── MISSION ── */}
-      <section className="section">
-        <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 60, alignItems: 'center' }}>
-            <div>
-              <img
-                src="https://images.unsplash.com/photo-1556761175-4b46a572b786?w=800&auto=format&fit=crop"
-                alt="Office"
-                style={{ borderRadius: 20, width: '100%', objectFit: 'cover', aspectRatio: '4/3', boxShadow: 'var(--shadow-lg)' }}
-              />
-            </div>
-            <div>
-              <div className="badge"><span className="badge-dot" /> Our Mission</div>
-              <h2 style={{ fontSize: 'clamp(24px,3.5vw,34px)', marginBottom: 18 }}>
-                Empowering Businesses Through Technology
-              </h2>
-              <p style={{ color: 'var(--gray-500)', lineHeight: 1.8, marginBottom: 16 }}>
-                Founded in 2014, IP Technologies has grown from a small startup into a trusted technology partner
-                for over 500 businesses across India and globally. Our mission is simple: deliver world-class
-                digital solutions that drive measurable results.
-              </p>
-              <p style={{ color: 'var(--gray-500)', lineHeight: 1.8 }}>
-                We combine deep technical expertise with a genuine passion for problem-solving — making us the
-                team businesses turn to when they need solutions that truly work.
-              </p>
-            </div>
-          </div>
-        </div>
-        <style>{`@media(max-width:768px){ .container div[style*="grid-template-columns: 1fr 1fr"]{grid-template-columns:1fr!important;} }`}</style>
-      </section>
-
+       {/* ── ABOUT PREVIEW ── */}
+            <FadeInSection className="section">
+              <div className="container">
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, alignItems: 'center' }}>
+                  <div style={{ paddingRight: '10px' }}>
+                    <img
+                      src={iplogo}
+                      alt="Team"
+                      style={{ borderRadius: 2, width: '80%', objectFit: 'cover', aspectRatio: '4/3', boxShadow: 'var(--shadow-lg)' }}
+                    />
+                  </div>
+                  <div style={{ paddingLeft: '40px' }}>
+                    <div className="badge"><span className="badge-dot" /> About Us</div>
+                    <h2 style={{ fontSize: 'clamp(24px,3.5vw,34px)', marginBottom: 16 }}>About IP Technologies</h2>
+                    <p style={{ color: 'var(--gray-500)', lineHeight: 1.75, marginBottom: 28 }}>
+                      We are a team of passionate technologists dedicated to helping businesses
+                      thrive in the digital age. With years of experience across multiple domains,
+                      we deliver solutions that make a real impact.
+                    </p>
+                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+                      {[{ num: '500+', label: 'Happy Clients' }, { num: '10+', label: 'Years Experience' }].map(s => (
+                        <div key={s.label} style={{ background: 'var(--gray-50)', borderRadius: 12, padding: '18px 20px', border: '1px solid var(--gray-100)' }}>
+                          <div className="stat-num" style={{ fontSize: 26 }}>{s.num}</div>
+                          <div className="stat-lbl">{s.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                    <Link to="/about" className="btn btn-outline" style={{ borderColor: 'var(--blue)', color: 'var(--blue)' }}>
+                      Learn More <ArrowIcon />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+      
       {/* ── VALUES ── */}
-      <section className="section section-alt">
+      <FadeInSection className="section section-alt">
         <div className="container">
           <div className="section-head">
             <h2>Our Core Values</h2>
@@ -152,13 +130,91 @@ export default function About() {
             ))}
           </div>
         </div>
-      </section>
-
+      </FadeInSection>
+  {/* ── STATS ── */}
+      <FadeInSection className="section section-alt">
+        <div className="container">
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 32, textAlign: 'center' }}>
+            {STATS.map((s, idx) => (
+              <div key={s.label} style={{
+                background: 'var(--white)',
+                borderRadius: '16px',
+                padding: '32px 24px',
+                border: '1px solid var(--gray-200)',
+                boxShadow: 'var(--shadow-sm)',
+              }}>
+                <div style={{ fontFamily: 'var(--font-body)', fontSize: 42, fontWeight: 800, color: 'var(--blue)', lineHeight: 1 }}>{s.num}</div>
+                <div style={{ fontSize: 14, color: 'var(--gray-500)', marginTop: 8, fontWeight: 500 }}>{s.label}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`@media(max-width:600px){ section div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
+      </FadeInSection>
       {/* ── TEAM ── */}
-      <section className="section">
+      <FadeInSection className="section">
         <div className="container">
           <div className="section-head">
             <h2>Meet the Team</h2>
             <p>The talented people behind every solution we deliver</p>
           </div>
-          <div className="grid-3" style={{ gridTemplateColumns: 'repeat(4,1fr
+          <div className="grid-3" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
+            {TEAM.map(({ name, role, initials, color }) => (
+              <div key={name} className="card" style={{ 
+                textAlign: 'center',
+                transition: 'transform 0.2s, box-shadow 0.2s',
+                padding: '32px 20px',
+              }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-6px)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-lg)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = 'var(--shadow-sm)';
+                }}
+              >
+                <div style={{
+                  width: 80, height: 80, borderRadius: '50%',
+                  background: `linear-gradient(135deg, ${color}20, ${color}10)`, 
+                  border: `2.5px solid ${color}40`,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center',
+                  margin: '0 auto 20px',
+                  fontFamily: 'var(--font-body)', fontWeight: 800, fontSize: 22, 
+                  color,
+                  boxShadow: `0 4px 16px ${color}25`,
+                }}>{initials}</div>
+                <h3 style={{ fontSize: 17, marginBottom: 6, fontWeight: 700 }}>{name}</h3>
+                <p style={{ fontSize: 13, color: 'var(--blue)', fontWeight: 500 }}>{role}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <style>{`@media(max-width:768px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
+      </FadeInSection>
+
+      {/* ── CTA ── */}
+      <FadeInSection className="section section-alt" style={{ paddingTop: 0 }}>
+        <div className="container">
+          <div style={{
+            borderRadius: '20px',
+            padding: '48px 40px',
+            background: 'var(--white)',
+            border: '1px solid var(--gray-200)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            gap: '32px',
+          }}>
+            <div>
+              <h2 style={{ fontSize: 'clamp(20px, 3vw, 26px)', marginBottom: 8 }}>Let's Work Together</h2>
+              <p style={{ color: 'var(--gray-500)', fontSize: 14 }}>Have a project in mind? We'd love to hear about it.</p>
+            </div>
+            <Link to="/contact" className="btn btn-primary">Get in Touch →</Link>
+          </div>
+        </div>
+      </FadeInSection>
+
+    </div>
+  );
+}

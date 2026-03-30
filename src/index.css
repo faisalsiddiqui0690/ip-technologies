@@ -38,6 +38,57 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* Fade In/Out Animation */
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+  transition: opacity 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94), 
+              transform 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.fade-in-section.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Enhanced staggered delays for child elements */
+.fade-in-section .card,
+.fade-in-section .badge,
+.fade-in-section h1,
+.fade-in-section h2,
+.fade-in-section h3,
+.fade-in-section h4,
+.fade-in-section p,
+.fade-in-section .btn,
+.fade-in-section .icon-box,
+.fade-in-section img {
+  transition-delay: 0.1s;
+}
+
+/* Page transition animations */
+.page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+/* Smooth scroll-based fade effects */
+.fade-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-on-scroll.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 h1, h2, h3, h4 {
   font-weight: 800;
   letter-spacing: -0.025em;
@@ -58,8 +109,10 @@ img { display: block; max-width: 100%; }
   .container { padding: 0 20px; }
 }
 
-/* Page wrapper offset for fixed header */
-.page { padding-top: 62px; }
+/* Page wrapper - no padding to stick to top */
+.page { 
+  padding-top: 0; 
+}
 
 /* Section spacing */
 .section { padding: 80px 0; }
