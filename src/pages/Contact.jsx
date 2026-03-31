@@ -41,10 +41,30 @@ export default function Contact() {
 
   const handleChange = e => setForm(f => ({ ...f, [e.target.name]: e.target.value }));
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    // Wire to your backend / EmailJS / Formspree here
-    setSent(true);
+    try {
+      const response = await fetch('http://localhost:5000/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(form),
+      });
+      
+      const data = await response.json();
+      
+      if (response.ok && data.success) {
+        setSent(true);
+        setForm({ name: '', email: '', phone: '', service: '', message: '' });
+        console.log('✅ Emails sent successfully!');
+      } else {
+        console.error('❌ Email error:', data);
+        const errorMessage = data.details?.join(', ') || data.error || 'Failed to send message. Please try again.';
+        alert(errorMessage);
+      }
+    } catch (error) {
+      console.error('❌ Submission error:', error);
+      alert('Network error. Please check if the backend server is running and try again.');
+    }
   };
 
   return (
