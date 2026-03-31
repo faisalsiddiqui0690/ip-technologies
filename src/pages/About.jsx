@@ -78,44 +78,41 @@ export default function About() {
         </div>
       </section>
 
-    
-
-      {/* ── MISSION ── */}
-       {/* ── ABOUT PREVIEW ── */}
-            <FadeInSection className="section">
-              <div className="container">
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 1, alignItems: 'center' }}>
-                  <div style={{ paddingRight: '10px' }}>
-                    <img
-                      src={iplogo}
-                      alt="Team"
-                      style={{ borderRadius: 2, width: '80%', objectFit: 'cover', aspectRatio: '4/3', boxShadow: 'var(--shadow-lg)' }}
-                    />
+      {/* ── ABOUT PREVIEW ── */}
+      <FadeInSection className="section">
+        <div className="container">
+          <div className="about-grid">
+            <div className="about-img-wrap">
+              <img
+                src={iplogo}
+                alt="Team"
+                className="about-img"
+              />
+            </div>
+            <div className="about-text-wrap">
+              <div className="badge"><span className="badge-dot" /> About Us</div>
+              <h2 style={{ fontSize: 'clamp(24px,3.5vw,34px)', marginBottom: 16 }}>About IP Technologies</h2>
+              <p style={{ color: 'var(--gray-500)', lineHeight: 1.75, marginBottom: 28 }}>
+                We are a team of passionate technologists dedicated to helping businesses
+                thrive in the digital age. With years of experience across multiple domains,
+                we deliver solutions that make a real impact.
+              </p>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
+                {[{ num: '500+', label: 'Happy Clients' }, { num: '10+', label: 'Years Experience' }].map(s => (
+                  <div key={s.label} style={{ background: 'var(--gray-50)', borderRadius: 12, padding: '18px 20px', border: '1px solid var(--gray-100)' }}>
+                    <div className="stat-num" style={{ fontSize: 26 }}>{s.num}</div>
+                    <div className="stat-lbl">{s.label}</div>
                   </div>
-                  <div style={{ paddingLeft: '40px' }}>
-                    <div className="badge"><span className="badge-dot" /> About Us</div>
-                    <h2 style={{ fontSize: 'clamp(24px,3.5vw,34px)', marginBottom: 16 }}>About IP Technologies</h2>
-                    <p style={{ color: 'var(--gray-500)', lineHeight: 1.75, marginBottom: 28 }}>
-                      We are a team of passionate technologists dedicated to helping businesses
-                      thrive in the digital age. With years of experience across multiple domains,
-                      we deliver solutions that make a real impact.
-                    </p>
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 32 }}>
-                      {[{ num: '500+', label: 'Happy Clients' }, { num: '10+', label: 'Years Experience' }].map(s => (
-                        <div key={s.label} style={{ background: 'var(--gray-50)', borderRadius: 12, padding: '18px 20px', border: '1px solid var(--gray-100)' }}>
-                          <div className="stat-num" style={{ fontSize: 26 }}>{s.num}</div>
-                          <div className="stat-lbl">{s.label}</div>
-                        </div>
-                      ))}
-                    </div>
-                    <Link to="/about" className="btn btn-outline" style={{ borderColor: 'var(--blue)', color: 'var(--blue)' }}>
-                      Learn More <ArrowIcon />
-                    </Link>
-                  </div>
-                </div>
+                ))}
               </div>
-            </FadeInSection>
-      
+              <Link to="/about" className="btn btn-outline" style={{ borderColor: 'var(--blue)', color: 'var(--blue)' }}>
+                Learn More <ArrowIcon />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </FadeInSection>
+
       {/* ── VALUES ── */}
       <FadeInSection className="section section-alt">
         <div className="container">
@@ -136,17 +133,19 @@ export default function About() {
           </div>
         </div>
       </FadeInSection>
-  {/* ── STATS ── */}
+
+      {/* ── STATS ── */}
       <FadeInSection className="section section-alt">
         <div className="container">
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 32, textAlign: 'center' }}>
-            {STATS.map((s, idx) => (
+          <div className="stats-grid">
+            {STATS.map((s) => (
               <div key={s.label} style={{
                 background: 'var(--white)',
                 borderRadius: '16px',
                 padding: '32px 24px',
                 border: '1px solid var(--gray-200)',
                 boxShadow: 'var(--shadow-sm)',
+                textAlign: 'center',
               }}>
                 <div style={{ fontFamily: 'var(--font-body)', fontSize: 42, fontWeight: 800, color: 'var(--blue)', lineHeight: 1 }}>{s.num}</div>
                 <div style={{ fontSize: 14, color: 'var(--gray-500)', marginTop: 8, fontWeight: 500 }}>{s.label}</div>
@@ -154,8 +153,8 @@ export default function About() {
             ))}
           </div>
         </div>
-        <style>{`@media(max-width:600px){ section div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
       </FadeInSection>
+
       {/* ── TEAM ── */}
       <FadeInSection className="section">
         <div className="container">
@@ -163,7 +162,7 @@ export default function About() {
             <h2>Meet the Team</h2>
             <p>The talented people behind every solution we deliver</p>
           </div>
-          <div className="grid-3" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
+          <div className="team-grid">
             {TEAM.map(({ name, role, initials, color }) => (
               <div key={name} className="card" style={{ 
                 textAlign: 'center',
@@ -195,7 +194,6 @@ export default function About() {
             ))}
           </div>
         </div>
-        <style>{`@media(max-width:768px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
       </FadeInSection>
 
       {/* ── CTA ── */}
@@ -219,6 +217,101 @@ export default function About() {
           </div>
         </div>
       </FadeInSection>
+
+      {/* ── MOBILE-ONLY STYLES ── */}
+      <style>{`
+        /* About section two-column grid */
+        .about-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 1px;
+          align-items: center;
+        }
+        .about-img-wrap {
+          padding-right: 10px;
+        }
+        .about-img {
+          border-radius: 2px;
+          width: 80%;
+          object-fit: cover;
+          aspect-ratio: 4/3;
+          box-shadow: var(--shadow-lg);
+        }
+        .about-text-wrap {
+          padding-left: 40px;
+        }
+
+        /* Stats grid */
+        .stats-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 32px;
+          text-align: center;
+        }
+
+        /* Team grid */
+        .team-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+
+        /* ── MOBILE OVERRIDES (max 768px) ── */
+        @media (max-width: 768px) {
+
+          /* About section: stack vertically */
+          .about-grid {
+            grid-template-columns: 1fr !important;
+            gap: 24px !important;
+          }
+          .about-img-wrap {
+            padding-right: 0 !important;
+            display: flex;
+            justify-content: center;
+          }
+          .about-img {
+            width: 70% !important;
+            aspect-ratio: 3/2 !important;
+          }
+          .about-text-wrap {
+            padding-left: 0 !important;
+          }
+
+          /* Stats: 2 columns on mobile */
+          .stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
+
+          /* Team: 2 columns on mobile */
+          .team-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+          }
+
+          /* CTA box: stack on mobile */
+          .section.section-alt .container > div[style*="space-between"] {
+            flex-direction: column !important;
+            text-align: center !important;
+            padding: 32px 20px !important;
+          }
+        }
+
+        /* ── SMALL MOBILE (max 480px) ── */
+        @media (max-width: 480px) {
+          .stats-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          .team-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+          .about-img {
+            width: 85% !important;
+          }
+        }
+      `}</style>
 
     </div>
   );

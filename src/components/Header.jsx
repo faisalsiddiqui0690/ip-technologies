@@ -94,15 +94,19 @@ export default function Header() {
         alignItems: 'center',
         justifyContent: 'space-between',
         padding: '0 32px',
-
+      
         // Clean white background - always visible
         background: 'white',
-
+      
         // Subtle shadow for depth
         boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
-
+      
         transform: visible ? 'translateY(0)' : 'translateY(-100%)',
         transition: 'transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+              
+        // Prevent overflow on mobile
+        boxSizing: 'border-box',
+        maxWidth: '100vw',
       }}>
 
         {/* Logo */}
@@ -187,6 +191,9 @@ export default function Header() {
             border: 'none',
             cursor: 'pointer',
             padding: 4,
+            flexShrink: 0,
+            minWidth: 32,
+            minHeight: 32,
           }}
           aria-label="Toggle menu"
         >
@@ -259,6 +266,17 @@ export default function Header() {
         @media (max-width: 768px) {
           .desktop-nav { display: none !important; }
           .hamburger-btn { display: flex !important; }
+          
+          /* Ensure header doesn't overflow on mobile */
+          header {
+            padding: 0 16px !important;
+          }
+        }
+        
+        @media (max-width: 480px) {
+          header {
+            padding: 0 12px !important;
+          }
         }
       `}</style>
     </>

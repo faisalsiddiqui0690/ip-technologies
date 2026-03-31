@@ -76,11 +76,13 @@ export default function Technologies() {
       {/* ── FILTER TABS ── */}
       <FadeInSection className="section section-alt">
         <div className="container">
+
           {/* Category tabs */}
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', justifyContent: 'center', marginBottom: 44 }}>
+          <div className="tech-filter-tabs">
             {CATEGORIES.map(cat => (
               <button key={cat} onClick={() => setActive(cat)} style={{
-                padding: '8px 20px', borderRadius: 20,
+                padding: '8px 20px',
+                borderRadius: 20,
                 border: '1.5px solid',
                 borderColor: active === cat ? 'var(--blue)' : 'var(--gray-200)',
                 background: active === cat ? 'var(--blue)' : 'white',
@@ -88,12 +90,13 @@ export default function Technologies() {
                 fontSize: 13, fontWeight: 500, cursor: 'pointer',
                 fontFamily: 'var(--font-body)',
                 transition: 'all 0.18s',
+                whiteSpace: 'nowrap',
               }}>{cat}</button>
             ))}
           </div>
 
           {/* Tech cards */}
-          <div className="grid-3" style={{ gridTemplateColumns: 'repeat(4,1fr)' }}>
+          <div className="tech-grid">
             {filtered.map(({ name, desc, color, bg }) => (
               <div key={name} className="card" style={{ 
                 textAlign: 'center',
@@ -126,7 +129,6 @@ export default function Technologies() {
             ))}
           </div>
         </div>
-        <style>{`@media(max-width:900px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(3,1fr)!important;} } @media(max-width:600px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
       </FadeInSection>
 
       {/* ── WHY OUR STACK ── */}
@@ -164,6 +166,67 @@ export default function Technologies() {
           </div>
         </div>
       </FadeInSection>
+
+      {/* ── MOBILE-ONLY STYLES ── */}
+      <style>{`
+        /* Filter tabs row */
+        .tech-filter-tabs {
+          display: flex;
+          gap: 8px;
+          flex-wrap: wrap;
+          justify-content: center;
+          margin-bottom: 44px;
+        }
+
+        /* Tech cards grid — desktop 4 cols */
+        .tech-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 24px;
+        }
+
+        /* ── TABLET (max 900px) ── */
+        @media (max-width: 900px) {
+          .tech-grid {
+            grid-template-columns: repeat(3, 1fr) !important;
+            gap: 16px !important;
+          }
+        }
+
+        /* ── MOBILE (max 768px) ── */
+        @media (max-width: 768px) {
+          .tech-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 12px !important;
+          }
+
+          /* Filter tabs: allow horizontal scroll on very small screens */
+          .tech-filter-tabs {
+            flex-wrap: nowrap !important;
+            overflow-x: auto !important;
+            justify-content: flex-start !important;
+            padding-bottom: 8px !important;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+          }
+          .tech-filter-tabs::-webkit-scrollbar {
+            display: none;
+          }
+
+          /* Tighten card padding on mobile */
+          .tech-grid .card {
+            padding: 20px 14px !important;
+          }
+        }
+
+        /* ── SMALL MOBILE (max 480px) ── */
+        @media (max-width: 480px) {
+          .tech-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 10px !important;
+          }
+        }
+      `}</style>
 
     </div>
   );

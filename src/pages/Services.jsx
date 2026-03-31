@@ -57,7 +57,7 @@ const ArrowIcon = () => (
 
 export default function Services() {
   const heroBlur = useScrollBlur(300);
-  const [showEcommerceModal, setShowEcommerceModal] = useState(null); // null, 'marketplace', 'sellerhub', 'shipments'
+  const [showEcommerceModal, setShowEcommerceModal] = useState(null);
 
   return (
     <div className="page">
@@ -278,14 +278,8 @@ export default function Services() {
             <h2>How We Work</h2>
             <p>A proven process that delivers results, on time and on budget</p>
           </div>
-          <div style={{ 
-            display: 'grid', 
-            gridTemplateColumns: 'repeat(4,1fr)', 
-            gap: 32, 
-            position: 'relative',
-            padding: '40px 0',
-          }}>
-            {PROCESS.map(({ step, title, desc }, idx) => (
+          <div className="process-grid">
+            {PROCESS.map(({ step, title, desc }) => (
               <div key={step} style={{ 
                 textAlign: 'center', 
                 position: 'relative',
@@ -320,7 +314,6 @@ export default function Services() {
             ))}
           </div>
         </div>
-        <style>{`@media(max-width:768px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }`}</style>
       </FadeInSection>
 
       {/* ── CTA ── */}
@@ -336,15 +329,12 @@ export default function Services() {
         </div>
       </FadeInSection>
 
-      {/* E-commerce Modal Popup */}
+      {/* ── E-COMMERCE MODAL ── */}
       {showEcommerceModal && (
         <div 
           style={{
             position: 'fixed',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
+            top: 0, left: 0, right: 0, bottom: 0,
             background: 'rgba(0, 0, 0, 0.7)',
             backdropFilter: 'blur(8px)',
             WebkitBackdropFilter: 'blur(8px)',
@@ -352,7 +342,7 @@ export default function Services() {
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            padding: '20px',
+            padding: '16px',
           }}
           onClick={() => setShowEcommerceModal(null)}
         >
@@ -375,10 +365,8 @@ export default function Services() {
               onClick={() => setShowEcommerceModal(null)}
               style={{
                 position: 'absolute',
-                top: 20,
-                right: 20,
-                width: 36,
-                height: 36,
+                top: 16, right: 16,
+                width: 36, height: 36,
                 borderRadius: '50%',
                 border: 'none',
                 background: 'var(--gray-100)',
@@ -404,7 +392,7 @@ export default function Services() {
               </svg>
             </button>
 
-            {/* Header Banner - Dynamic based on service */}
+            {/* Header Banner */}
             <div style={{
               background: showEcommerceModal === 'marketplace' 
                 ? 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)'
@@ -417,8 +405,7 @@ export default function Services() {
               textAlign: 'center',
             }}>
               <div style={{
-                width: 64,
-                height: 64,
+                width: 64, height: 64,
                 borderRadius: 16,
                 background: 'rgba(255,255,255,0.2)',
                 display: 'flex',
@@ -476,19 +463,9 @@ export default function Services() {
                     <div style={{
                       background: 'linear-gradient(135deg, rgba(255,107,53,0.08) 0%, rgba(255,140,66,0.08) 100%)',
                       border: '1px solid rgba(255,107,53,0.2)',
-                      borderRadius: 12,
-                      padding: 20,
-                      marginBottom: 24,
+                      borderRadius: 12, padding: 20, marginBottom: 24,
                     }}>
-                      <p style={{ 
-                        fontSize: 16, 
-                        fontWeight: 600, 
-                        color: '#ff6b35', 
-                        margin: 0,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 8,
-                      }}>
+                      <p style={{ fontSize: 16, fontWeight: 600, color: '#ff6b35', margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12"/>
                         </svg>
@@ -508,19 +485,9 @@ export default function Services() {
                     <div style={{
                       background: 'linear-gradient(135deg, rgba(26,60,255,0.08) 0%, rgba(10,26,107,0.08) 100%)',
                       border: '1px solid rgba(26,60,255,0.2)',
-                      borderRadius: 12,
-                      padding: 20,
-                      marginBottom: 24,
+                      borderRadius: 12, padding: 20, marginBottom: 24,
                     }}>
-                      <p style={{ 
-                        fontSize: 16, 
-                        fontWeight: 600, 
-                        color: '#1a3cff', 
-                        margin: 0,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 8,
-                      }}>
+                      <p style={{ fontSize: 16, fontWeight: 600, color: '#1a3cff', margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12"/>
                         </svg>
@@ -540,19 +507,9 @@ export default function Services() {
                     <div style={{
                       background: 'linear-gradient(135deg, rgba(0,184,148,0.08) 0%, rgba(0,163,131,0.08) 100%)',
                       border: '1px solid rgba(0,184,148,0.2)',
-                      borderRadius: 12,
-                      padding: 20,
-                      marginBottom: 24,
+                      borderRadius: 12, padding: 20, marginBottom: 24,
                     }}>
-                      <p style={{ 
-                        fontSize: 16, 
-                        fontWeight: 600, 
-                        color: '#00b894', 
-                        margin: 0,
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 8,
-                      }}>
+                      <p style={{ fontSize: 16, fontWeight: 600, color: '#00b894', margin: 0, display: 'flex', alignItems: 'center', gap: 8 }}>
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                           <polyline points="20 6 9 17 4 12"/>
                         </svg>
@@ -566,100 +523,28 @@ export default function Services() {
               {/* Key Features */}
               <div style={{ marginBottom: 32 }}>
                 <h3 style={{ fontSize: 20, marginBottom: 16, color: 'var(--gray-900)' }}>Key Features</h3>
-                <div style={{ display: 'grid', gap: 16 }}>
+                <div className="modal-features-grid">
                   {(showEcommerceModal === 'marketplace' ? [
-                    {
-                      title: 'Zero Commission Model',
-                      desc: 'List and sell unlimited products without paying any platform fees or commissions.',
-                      icon: '💰'
-                    },
-                    {
-                      title: 'Integrated Shipping',
-                      desc: 'Built-in IPShopy Shipments integration for seamless order fulfillment.',
-                      icon: '📦'
-                    },
-                    {
-                      title: 'Seller Hub Access',
-                      desc: 'Complete dashboard for analytics, inventory, and order management.',
-                      icon: '📊'
-                    },
-                    {
-                      title: 'Pan-India Reach',
-                      desc: 'Connect with millions of customers across India.',
-                      icon: '🇮🇳'
-                    },
-                    {
-                      title: 'Secure Payments',
-                      desc: 'Fast, reliable payment settlements with complete transparency.',
-                      icon: '🔒'
-                    },
-                    {
-                      title: 'Marketing Support',
-                      desc: 'Promotional campaigns and marketing tools to boost visibility.',
-                      icon: '📢'
-                    },
+                    { title: 'Zero Commission Model', desc: 'List and sell unlimited products without paying any platform fees or commissions.', icon: '💰' },
+                    { title: 'Integrated Shipping', desc: 'Built-in IPShopy Shipments integration for seamless order fulfillment.', icon: '📦' },
+                    { title: 'Seller Hub Access', desc: 'Complete dashboard for analytics, inventory, and order management.', icon: '📊' },
+                    { title: 'Pan-India Reach', desc: 'Connect with millions of customers across India.', icon: '🇮🇳' },
+                    { title: 'Secure Payments', desc: 'Fast, reliable payment settlements with complete transparency.', icon: '🔒' },
+                    { title: 'Marketing Support', desc: 'Promotional campaigns and marketing tools to boost visibility.', icon: '📢' },
                   ] : showEcommerceModal === 'sellerhub' ? [
-                    {
-                      title: 'Real-Time Analytics',
-                      desc: 'Track sales, revenue, and performance metrics with detailed dashboards.',
-                      icon: '📈'
-                    },
-                    {
-                      title: 'Inventory Management',
-                      desc: 'Automated stock tracking, low-stock alerts, and bulk upload capabilities.',
-                      icon: '📦'
-                    },
-                    {
-                      title: 'Order Processing',
-                      desc: 'Streamlined order management from placement to delivery confirmation.',
-                      icon: '✅'
-                    },
-                    {
-                      title: 'Customer Insights',
-                      desc: 'Understand your customers with detailed behavior and purchase analytics.',
-                      icon: '👥'
-                    },
-                    {
-                      title: 'Automated Notifications',
-                      desc: 'Keep customers informed with automated order status updates.',
-                      icon: '🔔'
-                    },
-                    {
-                      title: 'Multi-Platform Sync',
-                      desc: 'Manage multiple sales channels from a single unified dashboard.',
-                      icon: '🔄'
-                    },
+                    { title: 'Real-Time Analytics', desc: 'Track sales, revenue, and performance metrics with detailed dashboards.', icon: '📈' },
+                    { title: 'Inventory Management', desc: 'Automated stock tracking, low-stock alerts, and bulk upload capabilities.', icon: '📦' },
+                    { title: 'Order Processing', desc: 'Streamlined order management from placement to delivery confirmation.', icon: '✅' },
+                    { title: 'Customer Insights', desc: 'Understand your customers with detailed behavior and purchase analytics.', icon: '👥' },
+                    { title: 'Automated Notifications', desc: 'Keep customers informed with automated order status updates.', icon: '🔔' },
+                    { title: 'Multi-Platform Sync', desc: 'Manage multiple sales channels from a single unified dashboard.', icon: '🔄' },
                   ] : [
-                    {
-                      title: 'Competitive Rates',
-                      desc: 'Negotiated shipping rates that save you money on every order.',
-                      icon: '💵'
-                    },
-                    {
-                      title: 'Real-Time Tracking',
-                      desc: 'Live shipment tracking for you and your customers.',
-                      icon: '📍'
-                    },
-                    {
-                      title: 'Multiple Partners',
-                      desc: 'Integration with India\'s most reliable courier and logistics partners.',
-                      icon: '🚚'
-                    },
-                    {
-                      title: 'Automated Pickup',
-                      desc: 'Schedule automatic pickups from your warehouse or location.',
-                      icon: '⏰'
-                    },
-                    {
-                      title: 'COD Support',
-                      desc: 'Cash on delivery option with fast remittance cycles.',
-                      icon: '💰'
-                    },
-                    {
-                      title: 'Returns Management',
-                      desc: 'Hassle-free reverse logistics for returns and exchanges.',
-                      icon: '↩️'
-                    },
+                    { title: 'Competitive Rates', desc: 'Negotiated shipping rates that save you money on every order.', icon: '💵' },
+                    { title: 'Real-Time Tracking', desc: 'Live shipment tracking for you and your customers.', icon: '📍' },
+                    { title: 'Multiple Partners', desc: "Integration with India's most reliable courier and logistics partners.", icon: '🚚' },
+                    { title: 'Automated Pickup', desc: 'Schedule automatic pickups from your warehouse or location.', icon: '⏰' },
+                    { title: 'COD Support', desc: 'Cash on delivery option with fast remittance cycles.', icon: '💰' },
+                    { title: 'Returns Management', desc: 'Hassle-free reverse logistics for returns and exchanges.', icon: '↩️' },
                   ]).map((feature, idx) => (
                     <div 
                       key={idx}
@@ -672,31 +557,20 @@ export default function Services() {
                         border: '1px solid var(--gray-100)',
                         transition: 'transform 0.2s',
                       }}
-                      onMouseEnter={(e) => {
-                        e.currentTarget.style.transform = 'translateX(4px)';
-                      }}
-                      onMouseLeave={(e) => {
-                        e.currentTarget.style.transform = 'translateX(0)';
-                      }}
+                      onMouseEnter={(e) => { e.currentTarget.style.transform = 'translateX(4px)'; }}
+                      onMouseLeave={(e) => { e.currentTarget.style.transform = 'translateX(0)'; }}
                     >
-                      <div style={{
-                        fontSize: 28,
-                        flexShrink: 0,
-                      }}>{feature.icon}</div>
+                      <div style={{ fontSize: 28, flexShrink: 0 }}>{feature.icon}</div>
                       <div>
-                        <h4 style={{ fontSize: 15, fontWeight: 600, color: 'var(--gray-900)', marginBottom: 4 }}>
-                          {feature.title}
-                        </h4>
-                        <p style={{ fontSize: 13, color: 'var(--gray-500)', lineHeight: 1.6, margin: 0 }}>
-                          {feature.desc}
-                        </p>
+                        <h4 style={{ fontSize: 15, fontWeight: 600, color: 'var(--gray-900)', marginBottom: 4 }}>{feature.title}</h4>
+                        <p style={{ fontSize: 13, color: 'var(--gray-500)', lineHeight: 1.6, margin: 0 }}>{feature.desc}</p>
                       </div>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Call to Action */}
+              {/* CTA */}
               <div style={{
                 background: showEcommerceModal === 'marketplace'
                   ? 'linear-gradient(135deg, #ff6b35 0%, #ff8c42 100%)'
@@ -778,19 +652,58 @@ export default function Services() {
         </div>
       )}
 
+      {/* ── STYLES (mobile only) ── */}
       <style>{`
         @keyframes modalSlideIn {
-          from {
-            opacity: 0;
-            transform: translateY(-20px) scale(0.95);
+          from { opacity: 0; transform: translateY(-20px) scale(0.95); }
+          to   { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        /* Process grid — desktop 4 cols */
+        .process-grid {
+          display: grid;
+          grid-template-columns: repeat(4, 1fr);
+          gap: 32px;
+          position: relative;
+          padding: 40px 0;
+        }
+
+        /* Modal features — desktop single col (already stacked) */
+        .modal-features-grid {
+          display: grid;
+          gap: 16px;
+        }
+
+        /* ── MOBILE (max 768px) ── */
+        @media (max-width: 768px) {
+
+          /* Process: 2 cols */
+          .process-grid {
+            grid-template-columns: repeat(2, 1fr) !important;
+            gap: 16px !important;
+            padding: 20px 0 !important;
           }
-          to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+
+          /* Modal inner padding */
+          .modal-features-grid {
+            gap: 12px !important;
           }
         }
-        
-        @media(max-width:768px){ .container div[style*="repeat(4,1fr)"]{grid-template-columns:repeat(2,1fr)!important;} }
+
+        /* ── SMALL MOBILE (max 480px) ── */
+        @media (max-width: 480px) {
+
+          /* Process: single col on very small screens */
+          .process-grid {
+            grid-template-columns: 1fr !important;
+            gap: 12px !important;
+          }
+
+          /* Modal header & content padding tighter */
+          div[style*="borderRadius: '20px 20px 0 0'"] {
+            padding: 28px 20px !important;
+          }
+        }
       `}</style>
     </div>
   );
