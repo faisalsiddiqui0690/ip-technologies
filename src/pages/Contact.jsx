@@ -52,10 +52,15 @@ export default function Contact() {
 
       {/* ── PAGE HERO ── */}
       <section style={{
-        minHeight: '50vh', display: 'flex', alignItems: 'center',
-        paddingTop: '162px', paddingBottom: '40px', position: 'relative', overflow: 'hidden',
+        minHeight: '30vh',
+        display: 'flex', 
+        alignItems: 'center',
+        paddingTop: '72px', 
+        paddingBottom: '40px', 
+        position: 'relative', 
+        overflow: 'hidden',
         background: `
-          linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
+          linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 100%),
           url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&auto=format&fit=crop') center/cover no-repeat
         `,
       }}>

@@ -45,10 +45,15 @@ export default function Technologies() {
 
       {/* ── PAGE HERO ── */}
       <section style={{
-        minHeight: '50vh', display: 'flex', alignItems: 'center',
-        paddingTop: '162px', paddingBottom: '40px', position: 'relative', overflow: 'hidden',
+        minHeight: '30vh',
+        display: 'flex', 
+        alignItems: 'center',
+        paddingTop: '72px', 
+        paddingBottom: '40px', 
+        position: 'relative', 
+        overflow: 'hidden',
         background: `
-          linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
+          linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 100%),
           url('https://images.unsplash.com/photo-1518770660439-4636190af475?w=1600&auto=format&fit=crop') center/cover no-repeat
         `,
         filter: `blur(${heroBlur}px)`,

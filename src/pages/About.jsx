@@ -52,10 +52,15 @@ export default function About() {
 
       {/* ── PAGE HERO ── */}
       <section style={{
-        minHeight: '50vh', display: 'flex', alignItems: 'center',
-        paddingTop: '162px', paddingBottom: '40px', position: 'relative', overflow: 'hidden',
+        minHeight: '30vh',
+        display: 'flex', 
+        alignItems: 'center',
+        paddingTop: '82px', 
+        paddingBottom: '40px', 
+        position: 'relative', 
+        overflow: 'hidden',
         background: `
-          linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(255,255,255,0.7) 100%),
+          linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 100%),
           url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=1600&auto=format&fit=crop') center/cover no-repeat
         `,
       }}>

@@ -10,12 +10,40 @@ const NAV_LINKS = [
 
 const LogoMark = () => (
   <span style={{
-    width: 28, height: 28, borderRadius: 7,
-    background: 'var(--blue)', display: 'flex',
-    alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+    width: 32, height: 32,
+    borderRadius: 8,
+    background: 'linear-gradient(135deg, #1a3cff 0%, #0a1a6b 100%)',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexShrink: 0,
+    boxShadow: '0 4px 12px rgba(26, 60, 255, 0.3)',
+    position: 'relative',
+    overflow: 'hidden',
   }}>
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-      <path d="M2 10L7 4L12 10" stroke="white" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" />
+    {/* Subtle shine effect */}
+    <div style={{
+      position: 'absolute',
+      top: 0, left: 0, right: 0, bottom: 0,
+      background: 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 50%)',
+      pointerEvents: 'none',
+    }} />
+    
+    {/* Enhanced chevron icon */}
+    <svg width="16" height="16" viewBox="0 0 14 14" fill="none" style={{
+      position: 'relative',
+      zIndex: 1,
+    }}>
+      <path 
+        d="M2 10L7 4L12 10" 
+        stroke="white" 
+        strokeWidth="2.4" 
+        strokeLinecap="round" 
+        strokeLinejoin="round"
+        style={{
+          filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.2))',
+        }}
+      />
     </svg>
   </span>
 );
@@ -67,47 +95,43 @@ export default function Header() {
         justifyContent: 'space-between',
         padding: '0 32px',
 
-        // Always transparent - no white background
-        background: 'transparent',
+        // Clean white background - always visible
+        background: 'white',
 
-        // Glassmorphism effect - always blurred, stronger when scrolled
-        backdropFilter: scrolled 
-          ? 'blur(24px) saturate(180%)' 
-          : 'blur(12px) saturate(140%)',
-        WebkitBackdropFilter: scrolled 
-          ? 'blur(24px) saturate(180%)' 
-          : 'blur(12px) saturate(140%)',
-
-        // Subtle border that becomes more visible on scroll
-        borderBottom: scrolled 
-          ? '1px solid rgba(255, 255, 255, 0.18)' 
-          : '1px solid rgba(255, 255, 255, 0.08)',
-
-        // Shadow only appears when scrolled
-        boxShadow: scrolled 
-          ? '0 8px 32px rgba(0, 0, 0, 0.12)' 
-          : 'none',
+        // Subtle shadow for depth
+        boxShadow: '0 2px 12px rgba(0, 0, 0, 0.08)',
 
         transform: visible ? 'translateY(0)' : 'translateY(-100%)',
-        transition: 'all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
+        transition: 'transform 0.4s cubic-bezier(0.4, 0.0, 0.2, 1)',
       }}>
 
         {/* Logo */}
         <Link to="/" style={{
           display: 'flex',
           alignItems: 'center',
-          gap: 8,
+          gap: 10,
           textDecoration: 'none',
-        }}>
+          transition: 'transform 0.2s ease',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.transform = 'scale(1.03)';
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.transform = 'scale(1)';
+        }}
+        >
           <LogoMark />
           <span style={{
             fontFamily: 'var(--font-body)',
             fontWeight: 800,
             fontSize: 17,
-            color: 'var(--gray-900)',
+            background: 'linear-gradient(135deg, #1a3cff 0%, #0a1a6b 100%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+            backgroundClip: 'text',
             letterSpacing: '-0.03em',
             WebkitFontSmoothing: 'antialiased',
-            textShadow: '0 2px 8px rgba(0,0,0,0.12)',
+            textShadow: '0 2px 8px rgba(26, 60, 255, 0.15)',
           }}>IP Technologies</span>
         </Link>
 
