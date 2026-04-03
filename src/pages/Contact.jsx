@@ -81,7 +81,7 @@ export default function Contact() {
         overflow: 'hidden',
         background: `
           linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.15) 100%),
-          url('https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1600&auto=format&fit=crop') center/cover no-repeat
+          url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1600&auto=format&fit=crop') center/cover no-repeat
         `,
       }}>
         <div className="dot-bg" style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }} />
@@ -228,6 +228,7 @@ export default function Contact() {
                         <option>E-Commerce</option>
                         <option>Cloud & DevOps</option>
                         <option>Custom Software</option>
+                        <option>Career</option>
                         <option>Other</option>
                       </select>
                     </div>
